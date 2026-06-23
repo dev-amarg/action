@@ -1,0 +1,24 @@
+name: deploy to ec2 server
+on:
+  push:
+    branches:
+      -main
+
+
+
+jobs:
+  deploy:
+    run-on: ubuntu-latest
+    steps:
+      - name: deploy to ec2 via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.EC2_HOST}}
+          username: ${{secrets.EC2_USER}}
+          key: ${{secrets.EC2.SSH.KEY}}
+        script: |
+          cd /home/ec2-user/docker/action
+          git pull origin main
+          docker-compose down
+          docker-compose up -d --build
+
