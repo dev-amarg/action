@@ -22,7 +22,7 @@ const employeeSchema = new mongoose.Schema({
 const Employee = mongoose.model('Employee', employeeSchema); 
 
 app.get('/', (req, res) => {
-  res.send('Hello Docker Compose1 Node + MongoDB from Amar');
+  res.send('Hello Docker Compose1 Node + MongoDB from Amar and aayushi');
 });
 
 app.get('/data', async (req, res) => {
